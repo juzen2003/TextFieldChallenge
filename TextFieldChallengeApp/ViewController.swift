@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var zipCodeTextField: UITextField!
     @IBOutlet weak var cashTextField: UITextField!
@@ -20,10 +20,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.lockableSwitch.isOn = false
         self.zipCodeTextField.delegate = zipCodeTextFieldDelegate
+        self.lockableTextField.delegate = self
     }
 
-    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return self.lockableSwitch.isOn
+    }
 
 
 }

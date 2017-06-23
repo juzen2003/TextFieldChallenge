@@ -18,7 +18,7 @@ class ZipCodeTextFieldDelegate: NSObject, UITextFieldDelegate {
         var newText = textField.text! as NSString
         newText = newText.replacingCharacters(in: range, with: string) as NSString
         
-        return newText.length <= maxDigitAllowed
+        return ((newText.length <= maxDigitAllowed && Int(newText as String) != nil) || newText.length == 0)
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
