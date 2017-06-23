@@ -16,17 +16,24 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var lockableSwitch: UISwitch!
     
     let zipCodeTextFieldDelegate = ZipCodeTextFieldDelegate()
+    let cashTextFieldDelegate = CashTextFieldDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.lockableSwitch.isOn = false
         self.zipCodeTextField.delegate = zipCodeTextFieldDelegate
+        self.cashTextField.delegate = cashTextFieldDelegate
         self.lockableTextField.delegate = self
     }
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         return self.lockableSwitch.isOn
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 
 
